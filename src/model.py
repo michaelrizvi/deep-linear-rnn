@@ -8,10 +8,6 @@ from torch.nn import functional as F
 from ssm import S4Block as S4
 
 
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-
 
 # Dropout broke in PyTorch 1.11
 if tuple(map(int, torch.__version__.split('.')[:2])) == (1, 11):

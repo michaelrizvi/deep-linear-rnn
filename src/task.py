@@ -341,7 +341,8 @@ def test_shakespeare(tokenizer_type: Literal["gpt2", "char"] = "gpt2"):
     vocab_size = data_module.vocab_size
 
     #model = S4ModelWithEmbedding(d_input=vocab_size, embedding_dim=126, d_output=vocab_size, d_model=64, n_layers=2)
-    model = CPRNN(vocab_size, 64, vocab_size, rank=8)
+    # model = CPRNN(vocab_size, 64, vocab_size, rank=8)
+    model = DeepCPRNN(vocab_size, 64, 2, vocab_size, rank=8)
 
     if tokenizer_type == "char":
         task = ShakespeareCharTask(model=model, lr=1e-3)
@@ -364,7 +365,7 @@ if __name__ == "__main__":
     from pautomac import PautomacDataModule, PautomacDataset
     from transformers import AutoTokenizer
     from charactertokenizer import CharacterTokenizer
-    from cprnn import CPRNN
+    from cprnn import CPRNN, DeepCPRNN
 
     test_shakespeare(tokenizer_type="char")
     #dataset = PautomacDataset(automata_name="4.spice.train")
